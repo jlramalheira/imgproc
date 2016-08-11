@@ -27,7 +27,7 @@ def find_neighbors(x, y, height, width, color, img):
 img = cv2.imread(sys.argv[1], 0)
 height, width = img.shape
 
-imgNeighbors = (np.uint8)(img >= 255) * 255
+imgNeighbors = (np.uint8)(img >= 127) * 255
 color = 1
 points = np.where(imgNeighbors == 255)
 while len(points[0]) > 0:
