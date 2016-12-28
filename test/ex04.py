@@ -21,6 +21,7 @@ cv2.waitKey(0)
 img_rgb = cv2.imread(sys.argv[1])
 
 result1 = main.gamma_correction(img_rgb, 0.5)
+cv2.imwrite('imagem.png', result1)
 result2 = main.gamma_correction(img_rgb, 1)
 result3 = main.gamma_correction(img_rgb, 2)
 

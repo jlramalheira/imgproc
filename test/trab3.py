@@ -22,15 +22,18 @@ def create_palet():
     return np.dstack((blue, green, red))
 
 img = cv2.imread(sys.argv[1], 0)
+cv2.imshow('in', img)
 palet = create_palet()
 cv2.imshow('palet', palet)
 
 palet = palet[:, 0]
 
 height, width = img.shape
-img_out = np.zeros((height, width, 3), dtype=np.uint8)
-img_out[::, ::] = palet[img[::, ::]]
+imgOut = np.zeros((height, width, 3), dtype=np.uint8)
+imgOut[::, ::] = palet[img[::, ::]]
 
-cv2.imshow('out', img_out)
+cv2.imshow('out', imgOut)
+cv2.waitKey(0)
+cv2.waitKey(0)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

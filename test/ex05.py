@@ -24,11 +24,11 @@ def findPoints(imgBorder):
         imgBorder[x, y] = 0
         if x > 0 and imgBorder[x - 1][y] == 255:
             q.append((x - 1, y))
-        if x < (height - 1) and imgBorder[x + 1][y] == 255:
+        if x < (width - 1) and imgBorder[x + 1][y] == 255:
             q.append((x + 1, y))
         if y > 0 and imgBorder[x][y - 1] == 255:
             q.append((x, y - 1))
-        if y < (width - 1) and imgBorder[x][y + 1] == 255:
+        if y < (height - 1) and imgBorder[x][y + 1] == 255:
             q.append((x, y + 1))
     return domain, ranges
 
@@ -50,7 +50,8 @@ complexArray.imag = np.array(ranges)
 
 fourierTransform = np.fft.fft(complexArray)
 
-# TODO verificar o que fazer com o parametro de descritores
+limitDescritors = int(sys.argv[2])
+fourierTransform[limitDescritors:] = 0
 
 fourierInverse = np.fft.ifft(fourierTransform)
 

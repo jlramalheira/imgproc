@@ -3,7 +3,6 @@ import cv2
 import sys
 from collections import deque
 
-
 def find_neighbors(x, y, height, width, color, img):
     q = deque()
     q.append((x, y))
@@ -13,15 +12,15 @@ def find_neighbors(x, y, height, width, color, img):
         y = u[1]
         if img[x, y] == 255:
 	    # verificar vizinhos
-	    img[x][y] = color
             if x > 0 and img[x - 1][y] == 255:
                 q.append((x - 1, y))
-            if x < (height - 1) and img[x + 1][y] == 255:
+            if x < (width - 1) and img[x + 1][y] == 255:
                 q.append((x + 1, y))
             if y > 0 and img[x][y - 1] == 255:
                 q.append((x, y - 1))
-            if y < (width - 1) and img[x][y + 1] == 255:
+            if y < (height - 1) and img[x][y + 1] == 255:
                 q.append((x, y + 1))
+        img[x][y] = color
     return img
 
 img = cv2.imread(sys.argv[1], 0)
@@ -35,7 +34,7 @@ while len(points[0]) > 0:
     y = points[1][0]
     imgNeighbors = find_neighbors(x, y, height, width, color, imgNeighbors)
     points = np.where(imgNeighbors == 255)
-    color += 15
+    color += 1
 
 points = np.where(imgNeighbors == int(sys.argv[2]))
 if (len(points[0]) > 0):

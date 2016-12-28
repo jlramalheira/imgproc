@@ -21,7 +21,7 @@ def create_diagonal_gradient(height, width):
     return grad
 
 
-def bland(img1, img2):
+def blend(img1, img2):
     img = (np.uint8)((img1 + img2) / 2)
     return img
 
